@@ -1,12 +1,14 @@
 <?php
+
 /*
     Quick Installation
     Kumar vibhanshu
     https://github.com/vibhanshumonty
 */
-if(file_exists('db.inc.php')){
-	header('location:index.php');
-	die();
+
+if(file_exists('include/db.inc.php')){
+    header('location:index.php');
+    die();
 }
 $msg="";
 $host="";
@@ -14,46 +16,45 @@ $dbuname="";
 $dbpwd="";
 $dbname="";
 if(isset($_POST['submit'])){
-	$host=$_POST['host'];
-	$dbuname=$_POST['dbuname'];
-	$dbpwd=$_POST['dbpwd'];
-	$dbname=$_POST['dbname'];
-	
-	$con=@mysqli_connect($host,$dbuname,$dbpwd,$dbname);
-	if(mysqli_connect_error()){
-		$msg=mysqli_connect_error();
-	}else{
-		copy("db.inc.config.php","db.inc.php");
-		$file="db.inc.php";
-		file_put_contents($file,str_replace("db_host",$host,file_get_contents($file)));
-		file_put_contents($file,str_replace("db_username",$dbuname,file_get_contents($file)));
-		file_put_contents($file,str_replace("db_password",$dbpwd,file_get_contents($file)));
-		file_put_contents($file,str_replace("db_name",$dbname,file_get_contents($file)));
-		 
-		$sql="CREATE TABLE `page` (
+    $host=$_POST['host'];
+    $dbuname=$_POST['dbuname'];
+    $dbpwd=$_POST['dbpwd'];
+    $dbname=$_POST['dbname'];
+    
+    $con=@mysqli_connect($host,$dbuname,$dbpwd,$dbname);
+    if(mysqli_connect_error()){
+        $msg=mysqli_connect_error();
+    }else{
+        copy("../include/db.inc.config.php","../include/db.inc.php");
+        $file="../include/db.inc.php";
+        file_put_contents($file,str_replace("db_host",$host,file_get_contents($file)));
+        file_put_contents($file,str_replace("db_username",$dbuname,file_get_contents($file)));
+        file_put_contents($file,str_replace("db_password",$dbpwd,file_get_contents($file)));
+        file_put_contents($file,str_replace("db_name",$dbname,file_get_contents($file)));
+         
+        $sql="CREATE TABLE `page` (
   `id` int(11) NOT NULL,
   `page` varchar(100) NOT NULL,
   `page_content` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
-		mysqli_query($con,$sql);
-		
-		$sql="ALTER TABLE `page`
+        mysqli_query($con,$sql);
+        
+        $sql="ALTER TABLE `page`
   ADD PRIMARY KEY (`id`);";
-		mysqli_query($con,$sql);
-		
-		$sql="ALTER TABLE `page`
+        mysqli_query($con,$sql);
+        
+        $sql="ALTER TABLE `page`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;";
-		mysqli_query($con,$sql);
-		
-		
-		$sql="INSERT INTO `page` (`id`, `page`, `page_content`) VALUES
+        mysqli_query($con,$sql);
+        
+        
+        $sql="INSERT INTO `page` (`id`, `page`, `page_content`) VALUES
 (1, 'Home', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ligula urna, dapibus eu nibh sit amet, pharetra varius est. Nam at felis ac dui pretium faucibus sit amet varius odio. In non semper tortor. Aliquam non velit dui. Sed a tincidunt purus. Morbi imperdiet mauris purus, et pellentesque urna consequat et. Proin tincidunt, lacus at blandit elementum, libero urna elementum massa, ac venenatis metus magna ut ligula. Sed ullamcorper orci diam, sit amet suscipit nibh vestibulum eget. Sed pharetra turpis elit, ut mattis arcu laoreet semper. Etiam hendrerit orci ac leo ullamcorper lacinia. Aenean varius suscipit mauris, at placerat elit placerat nec. Nulla scelerisque eget lorem quis fermentum. Morbi in mauris quis purus facilisis ultrices ut sit amet velit. Duis porta consequat lorem, eget scelerisque purus maximus vitae.\r\n\r\n'),
 (2, 'About Us', 'Mauris vel erat et lorem suscipit vulputate. Sed eu hendrerit lorem. Phasellus congue erat varius sapien bibendum, at convallis purus semper. Cras vitae nisi id felis tristique luctus at quis ex. Morbi sed odio at velit molestie pharetra. Fusce sollicitudin, sem sed dapibus elementum, justo ipsum luctus tellus, eu auctor est odio eu dolor. Ut consequat metus in gravida lacinia. Integer euismod convallis sem. Sed venenatis lorem at pharetra tempus. Nulla vitae ante vitae orci maximus fringilla. Vestibulum at scelerisque sem, in porttitor felis. Nunc lacinia pulvinar diam in pulvinar. Nam porttitor ipsum vel arcu dictum placerat. Duis eu dui id sem mattis molestie. Nunc feugiat laoreet sodales. Cras sed molestie sem, non volutpat urna.\r\n\r\n'),
 (3, 'Services', 'Etiam fringilla eros id cursus lobortis. Duis sodales imperdiet urna eu accumsan. Nulla egestas erat at elit consequat, vel ullamcorper velit aliquet. Donec convallis finibus odio, et aliquet urna congue ut. Vestibulum in justo consequat tortor sollicitudin ullamcorper. Curabitur at ullamcorper libero. Nunc risus mauris, condimentum id pellentesque vitae, porta vel tortor. Mauris erat magna, mattis eget ipsum id, imperdiet pellentesque ex. In tincidunt justo vitae velit aliquet ultricies. Nulla porta neque et orci finibus, eget interdum metus sagittis. Donec varius consequat venenatis. Vestibulum lobortis pellentesque sapien nec suscipit. Quisque eu tincidunt libero.\r\n\r\n');";
-		mysqli_query($con,$sql);
-		
-		header('location:index.php');
-	}
+        mysqli_query($con,$sql);
+        header('location:../index.php');
+    }
 }
 ?>
 
@@ -62,7 +63,7 @@ if(isset($_POST['submit'])){
    <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>KV - QUICK INSTALLATION </title>
+      <title>Quick Installer</title>
       <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
       <style>
             body {
@@ -197,6 +198,7 @@ if(isset($_POST['submit'])){
                             <div class="new-info-box bg-default">
                                 <i class="fa fa-list-alt h5i new-ii"></i> <h5>Requirements</h5>
                             </div>
+
                             <div class="new-info-box <?php
                             if ((isset($_GET['step'])) && $_GET['step'] == true || (isset($_GET['step'])) && $_GET['step']==2) {
                                 echo 'bg-default';
@@ -206,8 +208,9 @@ if(isset($_POST['submit'])){
                             ?> padding-10">
                                 <i class="fa fa-database h5i"></i> <h5> Database</h5>
                             </div>
+
                             <div class="new-info-box <?php
-                            if ((isset($_GET['step'])) && $_GET['step'] == true || (isset($_GET['step'])) && $_GET['step']==2) {
+                            if ((isset($_GET['step'])) && $_GET['step'] == true || (isset($_GET['step'])) && $_GET['step']==3) {
                                 echo 'bg-default';
                             } else {
                                 echo 'bg-not-passed';
@@ -216,6 +219,7 @@ if(isset($_POST['submit'])){
                                 <i class="fa fa-thumbs-up h5i"></i> <h5> Finish</h5>
 
                             </div>
+
                         </div><!--./col-md-3-->
                         <div class="col-lg-9 col-md-9 col-sm-9">
                             <div class="newbox new-box-primary">

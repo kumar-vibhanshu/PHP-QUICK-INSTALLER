@@ -52,9 +52,23 @@ if(isset($_POST['submit'])){
 (1, 'Home', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ligula urna, dapibus eu nibh sit amet, pharetra varius est. Nam at felis ac dui pretium faucibus sit amet varius odio. In non semper tortor. Aliquam non velit dui. Sed a tincidunt purus. Morbi imperdiet mauris purus, et pellentesque urna consequat et. Proin tincidunt, lacus at blandit elementum, libero urna elementum massa, ac venenatis metus magna ut ligula. Sed ullamcorper orci diam, sit amet suscipit nibh vestibulum eget. Sed pharetra turpis elit, ut mattis arcu laoreet semper. Etiam hendrerit orci ac leo ullamcorper lacinia. Aenean varius suscipit mauris, at placerat elit placerat nec. Nulla scelerisque eget lorem quis fermentum. Morbi in mauris quis purus facilisis ultrices ut sit amet velit. Duis porta consequat lorem, eget scelerisque purus maximus vitae.\r\n\r\n'),
 (2, 'About Us', 'Mauris vel erat et lorem suscipit vulputate. Sed eu hendrerit lorem. Phasellus congue erat varius sapien bibendum, at convallis purus semper. Cras vitae nisi id felis tristique luctus at quis ex. Morbi sed odio at velit molestie pharetra. Fusce sollicitudin, sem sed dapibus elementum, justo ipsum luctus tellus, eu auctor est odio eu dolor. Ut consequat metus in gravida lacinia. Integer euismod convallis sem. Sed venenatis lorem at pharetra tempus. Nulla vitae ante vitae orci maximus fringilla. Vestibulum at scelerisque sem, in porttitor felis. Nunc lacinia pulvinar diam in pulvinar. Nam porttitor ipsum vel arcu dictum placerat. Duis eu dui id sem mattis molestie. Nunc feugiat laoreet sodales. Cras sed molestie sem, non volutpat urna.\r\n\r\n'),
 (3, 'Services', 'Etiam fringilla eros id cursus lobortis. Duis sodales imperdiet urna eu accumsan. Nulla egestas erat at elit consequat, vel ullamcorper velit aliquet. Donec convallis finibus odio, et aliquet urna congue ut. Vestibulum in justo consequat tortor sollicitudin ullamcorper. Curabitur at ullamcorper libero. Nunc risus mauris, condimentum id pellentesque vitae, porta vel tortor. Mauris erat magna, mattis eget ipsum id, imperdiet pellentesque ex. In tincidunt justo vitae velit aliquet ultricies. Nulla porta neque et orci finibus, eget interdum metus sagittis. Donec varius consequat venenatis. Vestibulum lobortis pellentesque sapien nec suscipit. Quisque eu tincidunt libero.\r\n\r\n');";
-        mysqli_query($con,$sql);
-        header('location:../index.php');
-    }
+        $query = mysqli_query($con,$sql);
+           $dir = "../install";
+            $it = new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS);
+            $files = new RecursiveIteratorIterator($it,
+                         RecursiveIteratorIterator::CHILD_FIRST);
+            foreach($files as $file) {
+                if ($file->isDir()){
+                    rmdir($file->getRealPath());
+                } else {
+                    unlink($file->getRealPath());
+                }
+            }
+            rmdir($dir);
+                        header('location:../index.php');
+                    
+                    
+                }
 }
 ?>
 

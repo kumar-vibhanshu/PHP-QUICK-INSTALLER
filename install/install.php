@@ -51,6 +51,7 @@ if(isset($_POST['submit'])){
         (3, 'Services', 'Etiam fringilla eros id cursus lobortis. Duis sodales imperdiet urna eu accumsan. Nulla egestas erat at elit consequat, vel ullamcorper velit aliquet. Donec convallis finibus odio, et aliquet urna congue ut. Vestibulum in justo consequat tortor sollicitudin ullamcorper. Curabitur at ullamcorper libero. Nunc risus mauris, condimentum id pellentesque vitae, porta vel tortor. Mauris erat magna, mattis eget ipsum id, imperdiet pellentesque ex. In tincidunt justo vitae velit aliquet ultricies. Nulla porta neque et orci finibus, eget interdum metus sagittis. Donec varius consequat venenatis. Vestibulum lobortis pellentesque sapien nec suscipit. Quisque eu tincidunt libero.\r\n\r\n');";
         $query = mysqli_query($con,$sql);
         
+        //To Delete installation directory
         $dir = "../install";
         $it = new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS);
         $files = new RecursiveIteratorIterator($it, RecursiveIteratorIterator::CHILD_FIRST);

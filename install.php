@@ -1,4 +1,9 @@
 <?php
+/*
+    Quick Installation
+    Kumar vibhanshu
+    https://github.com/vibhanshumonty
+*/
 if(file_exists('db.inc.php')){
 	header('location:index.php');
 	die();
@@ -57,7 +62,7 @@ if(isset($_POST['submit'])){
    <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>Quick Installer</title>
+      <title>KV - QUICK INSTALLATION </title>
       <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
       <style>
             body {

@@ -1,4 +1,9 @@
 <?php
+/*
+    Quick Installation
+    Kumar vibhanshu
+    https://github.com/vibhanshumonty
+*/
 if(!file_exists('db.inc.php')){
 	header('location:install.php');
 	die();

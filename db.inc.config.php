@@ -1,4 +1,9 @@
 <?php
+/*
+    Quick Installation
+    Kumar vibhanshu
+    https://github.com/vibhanshumonty
+*/
 $host="db_host";
 $username="db_username";
 $password="db_password";
